@@ -8,11 +8,11 @@ jobs:
       - run: make test
 
   package:
-    docker:
-      - image: chaossystems/build-rpm
+    machine: true
     requires:
         - test
     steps:
+      - apt-get install rpmbuild -y
       - checkout
       - run: pip install paramiko
       - run: pip install ansible==2.2.1.0
