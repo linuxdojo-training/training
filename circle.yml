@@ -1,0 +1,22 @@
+machine:
+  timezone:
+    Australia/Sydney
+
+dependencies:
+  pre:
+    - pip install paramiko
+    - pip install ansible==2.2.1.0
+    - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+
+test:
+  override:
+    - make test
+
+# Create package and push to distribution server
+deployment:
+  production:
+    branch: master
+    commands:
+      - make package
+      #- make deploy
+
