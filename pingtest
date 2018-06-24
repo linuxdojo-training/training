@@ -1,0 +1,18 @@
+#!/bin/bash
+echo ping test v1.0
+quiet_mode=0
+server_list=$@
+
+if [ "$1" == "-q" ]; then
+    quiet_mode=1
+    server_list="${@:2}"
+fi
+
+for server in $server_list; do
+    if [ $quiet_mode == 1 ]; then
+        fping $server 2>/dev/null
+    else
+        fping $server
+    fi
+done
+
