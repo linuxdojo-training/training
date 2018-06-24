@@ -1,4 +1,9 @@
 TEMPDIR := $(shell readlink -m rpmbuild)
+.SILENT:
+
+help:
+	echo "make test       - execute tests"
+	echo "make package    - build rpm packge in ./pkg/"
 
 test:
 	./pingtest >/dev/null 2>&1 && echo Tests pass || (echo Tests fail && exit 1)
