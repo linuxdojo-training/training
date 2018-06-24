@@ -15,7 +15,8 @@ jobs:
     steps:
       - run: yum install epel-release -y
       - run: yum install python-pip rpm-build -y
-      - run: yum group install \"Development\ Tools\" -y
+      - run: |
+          yum group install "Development Tools" -y
       - checkout
       - run: pip install paramiko
       - run: pip install ansible==2.2.1.0
