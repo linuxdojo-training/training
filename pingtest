@@ -1,5 +1,5 @@
-#!/bin/bash
-echo ping test v1.0
+#!/bin/bash -e
+echo == multi-ping test tool v1.0 ==
 quiet_mode=0
 server_list=$@
 
