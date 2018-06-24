@@ -12,7 +12,7 @@ jobs:
     requires:
         - test
     steps:
-      - run: sudo apt-get install rpm -y
+      - run: sudo apt install rpm -y
       - checkout
       - run: pip install paramiko
       - run: pip install ansible==2.2.1.0
