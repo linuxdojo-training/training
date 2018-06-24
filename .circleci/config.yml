@@ -8,7 +8,10 @@ jobs:
       - run: make test
 
   package:
-    machine: true
+      docker:
+        - image: chaossystems/build-rpm
+    requires:
+        - test
     steps:
       - checkout
       - run: pip install paramiko
@@ -20,5 +23,4 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - test
       - package
