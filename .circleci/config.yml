@@ -8,7 +8,8 @@ jobs:
       - run: make test
 
   package:
-    machine: true
+    docker:
+      - image: centos
     requires:
         - test
     steps:
