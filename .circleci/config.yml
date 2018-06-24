@@ -14,7 +14,7 @@ jobs:
         - test
     steps:
       - run: yum install epel-release -y
-      - run: yum install python-pip rpm-build -y
+      - run: yum install python-pip rpm-build python-devel -y
       - run: |
           yum group install "Development Tools" -y
       - checkout
