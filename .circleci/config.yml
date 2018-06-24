@@ -8,8 +8,8 @@ jobs:
       - run: make test
 
   package:
-      docker:
-        - image: chaossystems/build-rpm
+    docker:
+      - image: chaossystems/build-rpm
     requires:
         - test
     steps:
