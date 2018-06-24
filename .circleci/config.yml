@@ -1,23 +1,24 @@
-version: 1
-machine:
-  timezone:
-    Australia/Sydney
+version: 2
 
-dependencies:
-  pre:
-    - pip install paramiko
-    - pip install ansible==2.2.1.0
-    - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+jobs:
+  test:
+    machine: true
+    steps:
+      - checkout
+      - run: make test
 
-test:
-  override:
-    - make test
+  package:
+    machine: true
+    steps:
+      - checkout
+      - run: pip install paramiko
+      - run: pip install ansible==2.2.1.0
+      - run: "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+      - run: make package
 
-# Create package and push to distribution server
-deployment:
-  production:
-    branch: master
-    commands:
-      - make package
-      #- make deploy
-
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test
+      - package
