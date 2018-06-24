@@ -13,6 +13,7 @@ jobs:
     requires:
         - test
     steps:
+      - run: yum install epel-release -y
       - run: yum install python-pip rpm-build -y
       - checkout
       - run: pip install paramiko
